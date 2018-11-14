@@ -1,21 +1,15 @@
 fileFormatVersion: 2
-guid: 4632f1d3c3d42472580601269f68dab8
+guid: dbd06a7679a2740b88d21035d91d285e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Camera
-    100002: //RootNode
-    100004: site01
-    400000: Camera
-    400002: //RootNode
-    400004: site01
-    2000000: Camera
+    100000: //RootNode
+    400000: //RootNode
     2100000: Hologram_notSelected
-    2300000: site01
-    3300000: site01
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: site01
-    7400000: site01|NotSelected
-    7400002: site01|Shader NodetreeAction.001
+    7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -68,7 +62,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
+    previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
