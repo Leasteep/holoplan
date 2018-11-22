@@ -256,6 +256,13 @@
     <Compile Include="Assets\Oculus\VoiceMod\Scripts\Helpers\OVRMicInput.cs" />
     <Compile Include="Assets\Oculus\VoiceMod\Scripts\OVRVoiceMod.cs" />
     <Compile Include="Assets\Oculus\VoiceMod\Scripts\OVRVoiceModContext.cs" />
+    <Compile Include="Assets\Scripts\ChangeColor.cs" />
+    <Compile Include="Assets\Scripts\ChangeColorAndOneParticleSys.cs" />
+    <Compile Include="Assets\Scripts\ChangeColorOfOther.cs" />
+    <Compile Include="Assets\Scripts\ChangReciprocalParticleSys.cs" />
+    <Compile Include="Assets\Scripts\Detector.cs" />
+    <Compile Include="Assets\Scripts\DisplayOtherAndOneParticleSys.cs" />
+    <Compile Include="Assets\Scripts\ScaleChangesMap.cs" />
     <Compile Include="Assets\Scripts\VRManipulation.cs" />
     <Compile Include="Assets\Scripts\VRManipulative.cs" />
     <None Include="Assets\Oculus\Avatar\Content\Materials\AvatarMaterialStateShader.cginc" />

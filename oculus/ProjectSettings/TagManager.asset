@@ -6,6 +6,7 @@ TagManager:
   tags:
   - leftController
   - rightController
+  - site
   layers:
   - Default
   - TransparentFX
