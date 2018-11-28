@@ -12,7 +12,7 @@ public class VRManipulative : MonoBehaviour {
     private bool _collided;
     
 
-    private GameObject _collidedObject;
+    
 
 
     //left: -0.0352998 -0.003397927 0.07160564
@@ -47,8 +47,8 @@ public class VRManipulative : MonoBehaviour {
        if (Detector.GetComponent<Detector>().getSelectState() == true && _collided == false)
         {
             _collided = true;
-            _collidedObject = Detector.GetComponent<Detector>().getCollidedObject();
-            _collidedObject.GetComponent<ChangeColor>().changeColor();
+            VRManip.selectSite(Detector.GetComponent<Detector>().getCollidedObject());
+          
         }
        else if (Detector.GetComponent<Detector>().getSelectState() == false)
         {
@@ -64,23 +64,14 @@ public class VRManipulative : MonoBehaviour {
         VRManip.ControllerUnpressed(gameObject.tag);
     }
 
-   /* private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("hallo");
 
-        if (collision.gameObject.tag == "site")
-        {
-            ChangeColor.changeColor();
-        }
-    }
-    */
 
     private void OnTriggerStay(Collider other)
     {
         
         if (gameObject.tag == "leftController")
         {
-            if (OVRInput.Get(OVRInput.Button.Three) && !_pressed)
+            if ((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)) > 0.8 && !_pressed)
             {
                 _pressed = true;
                 VRManip.ControllerPressed(gameObject, gameObject.tag, other.gameObject);
@@ -88,7 +79,7 @@ public class VRManipulative : MonoBehaviour {
         }
         else if (gameObject.tag == "rightController")
         {
-            if (OVRInput.Get(OVRInput.Button.One) && !_pressed)
+            if ((OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger)) > 0.8 && !_pressed)
             {
                 _pressed = true;
                 VRManip.ControllerPressed(gameObject, gameObject.tag, other.gameObject);

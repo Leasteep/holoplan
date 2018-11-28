@@ -9,6 +9,7 @@ public class VRManipulation : MonoBehaviour {
     public float MoveStrength = 1;
     public float ScaleStrength = 1;
 
+    public GameObject Map;
    
     private GameObject _leftController;
     private GameObject _rightController;
@@ -16,6 +17,7 @@ public class VRManipulation : MonoBehaviour {
     private GameObject _leftControllerManipObject;
     private GameObject _rightControllerManipObject;
     private GameObject _mapAnchor;
+    private GameObject _collidedSite;
 
     private bool _leftControllerPressed;
     private bool _rightControllerPressed;
@@ -141,6 +143,7 @@ public class VRManipulation : MonoBehaviour {
         {
             _leftController = controller;
             _leftControllerManipObject = manipulatedObject;
+           // this.GetComponent<DefineChildren>().setChildren(_leftControllerManipObject);
             _leftControllerPressed = true;
             _lastLeftControllerPos = controller.transform.position;
             
@@ -149,6 +152,7 @@ public class VRManipulation : MonoBehaviour {
         {
             _rightController = controller;
             _rightControllerManipObject = manipulatedObject;
+            //this.GetComponent<DefineChildren>().setChildren(_rightControllerManipObject);
             _rightControllerPressed = true;
             _lastRightControllerPos = controller.transform.position;
         }
@@ -171,4 +175,12 @@ public class VRManipulation : MonoBehaviour {
             _rightControllerPressed = false;
         }
     }
+
+    public void selectSite(GameObject site)
+    {
+        site.GetComponent<ChangeColor>().changeColor();
+        this.GetComponent<DefineChildren>().setConnection();
+       
+    }
+
 }

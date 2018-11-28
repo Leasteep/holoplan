@@ -7,6 +7,10 @@ TagManager:
   - leftController
   - rightController
   - side
+  - anchor
+  - presentMap
+  - pastMap
+  - futureMap
   layers:
   - Default
   - TransparentFX
