@@ -6,13 +6,23 @@ public class VRManipulative : MonoBehaviour {
 
     public VRManipulation VRManip;
     //public ChangeColor ChangeColor;
-
-    private Detector detector;
+    public GameObject Detector;
 
     private bool _pressed;
-	// Use this for initialization
-	void Start () {
+    private bool _collided;
+    
+
+    private GameObject _collidedObject;
+
+
+    //left: -0.0352998 -0.003397927 0.07160564
+    //right: 03699808 -0.00299 0.07200663
+
+    // Use this for initialization
+    void Start () {
         _pressed = false;
+        _collided = false;
+      
 	}
 
     private void Update()
@@ -31,6 +41,18 @@ public class VRManipulative : MonoBehaviour {
             {
                 ControllerUnpressed();
             }
+        }
+
+       //zu sensibel --> delay? 
+       if (Detector.GetComponent<Detector>().getSelectState() == true && _collided == false)
+        {
+            _collided = true;
+            _collidedObject = Detector.GetComponent<Detector>().getCollidedObject();
+            _collidedObject.GetComponent<ChangeColor>().changeColor();
+        }
+       else if (Detector.GetComponent<Detector>().getSelectState() == false)
+        {
+            _collided = false;
         }
 
         
