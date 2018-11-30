@@ -16,24 +16,29 @@ public class ScaleChangesMap : MonoBehaviour {
     private Renderer rendererFutureMap;
     private Renderer rendererPastMap;
 
+    private ArrayList mapsRenderer;
+
     // auf map anchor ziehen, weil nicht map skaliert wird, sondern anchor
     // dadurch wird indirekt die Map skaliert, da sie Child von anchor ist
 	// Use this for initialization
+
+    //wird immer für alle maps gemacht egal ob sichtbar oder nicht 
 	void Start () {
-        //map = this.GetComponentInChildren<GameObject>();
 
+        mapsRenderer = new ArrayList();
         rendererPresentMap = PresentMap.GetComponent<Renderer>();
-       // rendererPresentMap.enabled = true;
-        rendererPresentMap.sharedMaterial = map_largeScale;
-
         rendererFutureMap = FutureMap.GetComponent<Renderer>();
-        //rendererFutureMap.enabled = true;
-        rendererFutureMap.sharedMaterial = map_largeScale;
-
         rendererPastMap = PastMap.GetComponent<Renderer>();
-        //rendererPastMap.enabled = true;
-        rendererPastMap.sharedMaterial = map_largeScale;
 
+      
+        mapsRenderer.Add(rendererPresentMap);
+        mapsRenderer.Add(rendererFutureMap);
+        mapsRenderer.Add(rendererPastMap);
+       
+        foreach(Renderer mapRenderer in mapsRenderer)
+        {
+            mapRenderer.sharedMaterial = map_largeScale;
+        }
 
     }
 
@@ -42,24 +47,27 @@ public class ScaleChangesMap : MonoBehaviour {
 
         if (transform.localScale.x < 2.5)
         {
-            rendererPresentMap.sharedMaterial = map_largeScale;
-            rendererFutureMap.sharedMaterial = map_largeScale;
-            rendererPastMap.sharedMaterial = map_largeScale;
+            foreach (Renderer mapRenderer in mapsRenderer)
+            {
+                mapRenderer.sharedMaterial = map_largeScale;
+            }
 
         }
 
         else if (transform.localScale.x < 5.5)
         {
-            rendererPresentMap.sharedMaterial = map_middleScale;
-            rendererFutureMap.sharedMaterial = map_middleScale;
-            rendererPastMap.sharedMaterial = map_middleScale;
+            foreach (Renderer mapRenderer in mapsRenderer)
+            {
+                mapRenderer.sharedMaterial = map_middleScale;
+            }
         }
 
         else {
 
-            rendererPresentMap.sharedMaterial = map_smallScale;
-            rendererFutureMap.sharedMaterial = map_smallScale;
-            rendererPastMap.sharedMaterial = map_smallScale;
+            foreach (Renderer mapRenderer in mapsRenderer)
+            {
+                mapRenderer.sharedMaterial = map_smallScale;
+            }
         }
 
 

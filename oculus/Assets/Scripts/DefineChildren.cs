@@ -10,6 +10,9 @@ public class DefineChildren : MonoBehaviour {
     public GameObject MapAnchor;
 
 
+    //wird in Site ermittelt --> alle Szenarien da abspielen 
+
+
     // Use this for initialization
     void Start () {
        

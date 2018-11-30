@@ -9,7 +9,8 @@ public class VRManipulation : MonoBehaviour {
     public float MoveStrength = 1;
     public float ScaleStrength = 1;
 
-    public GameObject Map;
+    public GameObject ParentMap;
+
    
     private GameObject _leftController;
     private GameObject _rightController;
@@ -64,7 +65,7 @@ public class VRManipulation : MonoBehaviour {
         }
         else if(_leftControllerPressed && _rightControllerPressed)
         {
-            if(_leftControllerManipObject == _rightControllerManipObject)
+            if(_leftControllerManipObject == _rightControllerManipObject) // kann rausgenommen werden, wenn wir mit ParentMap arbeiten, da dann immer das Object gleich 
             {
                 // calculate the distance between the two controller 
                 Vector3 DistanceBetweenController = _leftController.transform.position - _rightController.transform.position;
@@ -139,12 +140,12 @@ public class VRManipulation : MonoBehaviour {
         
 	}
 
-    public void ControllerPressed(GameObject controller, string ControllerTag, GameObject manipulatedObject)
+    public void ControllerPressed(GameObject controller, string ControllerTag, GameObject manipulatedObject) //manipulatedObject kann rausgenommen werden, wenn wir mit ParentMap arbeiten 
     {
         if(ControllerTag == "leftController")
         {
             _leftController = controller;
-            _leftControllerManipObject = manipulatedObject;
+            _leftControllerManipObject = ParentMap;
            // this.GetComponent<DefineChildren>().setChildren(_leftControllerManipObject);
             _leftControllerPressed = true;
             _lastLeftControllerPos = controller.transform.position;
@@ -153,7 +154,7 @@ public class VRManipulation : MonoBehaviour {
         else if(ControllerTag == "rightController")
         {
             _rightController = controller;
-            _rightControllerManipObject = manipulatedObject;
+            _rightControllerManipObject = ParentMap;
             //this.GetComponent<DefineChildren>().setChildren(_rightControllerManipObject);
             _rightControllerPressed = true;
             _lastRightControllerPos = controller.transform.position;
@@ -183,16 +184,12 @@ public class VRManipulation : MonoBehaviour {
     {
         if (_siteSelected == false)
         {
-            site.GetComponent<Site>().selectSite();
-           // this.GetComponent<DefineChildren>().setChildren(site);
-          
+            site.GetComponent<Site>().selectAllConnectedSites();
             _siteSelected = true;
         }
         else if (_siteSelected == true)
         {
-            site.GetComponent<Site>().disselectSite();
-           // this.GetComponent<DefineChildren>().deleteParent();
-         
+            site.GetComponent<Site>().deselectAllConnectedSites();
             _siteSelected = false; 
         }
         
