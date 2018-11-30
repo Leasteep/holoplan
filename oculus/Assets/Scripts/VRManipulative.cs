@@ -47,7 +47,7 @@ public class VRManipulative : MonoBehaviour {
        if (Detector.GetComponent<Detector>().getSelectState() == true && _collided == false)
         {
             _collided = true;
-            VRManip.selectSite(Detector.GetComponent<Detector>().getCollidedObject());
+            VRManip.manipulateSite(Detector.GetComponent<Detector>().getCollidedObject());
           
         }
        else if (Detector.GetComponent<Detector>().getSelectState() == false)

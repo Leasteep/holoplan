@@ -44,7 +44,6 @@ public class ChangeColor : MonoBehaviour
             selectedMat = green;
             }
             */
-        Debug.Log("Index: " + count);
         renderer.sharedMaterial = selectedMat;
     }
 

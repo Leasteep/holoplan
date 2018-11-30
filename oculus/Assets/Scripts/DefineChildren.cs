@@ -7,19 +7,12 @@ public class DefineChildren : MonoBehaviour {
     public GameObject PresentMap;
     public GameObject FutureMap;
     public GameObject PastMap;
+    public GameObject MapAnchor;
 
-    private Renderer FutureRender;
-    private Renderer PresentRender;
-    private Renderer PastRender;
 
     // Use this for initialization
     void Start () {
-        PresentRender = PresentMap.GetComponent<Renderer>();
-       // PresentRender.enabled = false;
-        FutureRender = FutureMap.GetComponent<Renderer>();
-        FutureRender.enabled = false;
-        PastRender = PastMap.GetComponent<Renderer>();
-        PastRender.enabled = false;
+       
     }
 
     // Update is called once per frame
@@ -32,8 +25,8 @@ public class DefineChildren : MonoBehaviour {
         if (MapParent.tag == "presentMap")
         {
            
-            FutureMap.transform.parent = MapParent.transform;
-            PastMap.transform.parent = MapParent.transform;
+            FutureMap.transform.parent = PresentMap.transform;
+            PastMap.transform.parent = PresentMap.transform;
         }
         if (MapParent.tag == "futureMap")
         {
@@ -49,15 +42,23 @@ public class DefineChildren : MonoBehaviour {
         }
     }
 
+    public void deleteParent()
+    {
+        FutureMap.transform.parent = MapAnchor.transform;
+        PresentMap.transform.parent = MapAnchor.transform;
+        PastMap.transform.parent = MapAnchor.transform;
+
+    }
+
     // 3 Szenarien, 1) Verbindung in Zukunft, 2) Verbindung in Vergangenheit, 3) Verbindung in Zukunft und Vergangenheit 
    public void setConnection()
     {
-        FutureRender.enabled = true;
-        PastRender.enabled = true;
+        FutureMap.SetActive(true);
+        PastMap.SetActive(true);
     }
     public void deletConnection()
-    { 
-            FutureRender.enabled = false;
-            PastRender.enabled = false;       
+    {
+        FutureMap.SetActive(false);
+        PastMap.SetActive(false);
     }
 }

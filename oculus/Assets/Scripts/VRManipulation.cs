@@ -21,6 +21,7 @@ public class VRManipulation : MonoBehaviour {
 
     private bool _leftControllerPressed;
     private bool _rightControllerPressed;
+    private bool _siteSelected;
 
     private Vector3 _lastLeftControllerPos;
     private Vector3 _lastRightControllerPos;
@@ -35,6 +36,7 @@ public class VRManipulation : MonoBehaviour {
        // Physics.IgnoreCollision(control, _leftControllerManipObject);
         _leftControllerPressed = false;
         _rightControllerPressed = false;
+        _siteSelected = false;
         _mapAnchor = GameObject.Find("/MapAnchor");
     }
 	
@@ -176,10 +178,24 @@ public class VRManipulation : MonoBehaviour {
         }
     }
 
-    public void selectSite(GameObject site)
+    // change color of the touched site, and enable the childMaps
+    public void manipulateSite(GameObject site)
     {
-        site.GetComponent<ChangeColor>().changeColor();
-        this.GetComponent<DefineChildren>().setConnection();
+        if (_siteSelected == false)
+        {
+            site.GetComponent<Site>().selectSite();
+           // this.GetComponent<DefineChildren>().setChildren(site);
+          
+            _siteSelected = true;
+        }
+        else if (_siteSelected == true)
+        {
+            site.GetComponent<Site>().disselectSite();
+           // this.GetComponent<DefineChildren>().deleteParent();
+         
+            _siteSelected = false; 
+        }
+        
        
     }
 

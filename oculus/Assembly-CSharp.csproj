@@ -260,6 +260,7 @@
     <Compile Include="Assets\Scripts\DefineChildren.cs" />
     <Compile Include="Assets\Scripts\Detector.cs" />
     <Compile Include="Assets\Scripts\ScaleChangesMap.cs" />
+    <Compile Include="Assets\Scripts\Site.cs" />
     <Compile Include="Assets\Scripts\VRManipulation.cs" />
     <Compile Include="Assets\Scripts\VRManipulative.cs" />
     <None Include="Assets\Oculus\Avatar\Content\Materials\AvatarMaterialStateShader.cginc" />

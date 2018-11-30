@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Detector : MonoBehaviour {
 
-    private bool _selected;
+    private bool _collision;
     private GameObject _collidedObject;
     
 	// Use this for initialization
 	void Start () {
 
-        _selected = false;
+        _collision = false;
 	}
 
     /* Update is called once per frame
@@ -22,10 +22,9 @@ public class Detector : MonoBehaviour {
     private void OnTriggerEnter (Collider obj)
     {
        
-        if (obj.gameObject.tag == "side")
+        if (obj.gameObject.tag == "site") //ToDo: Tags müssen an Connectetegruppen von sites angepasst werden 
         {
-            Debug.Log("hello");
-            _selected = true;
+            _collision = true;
             _collidedObject = obj.gameObject;
         
         }
@@ -34,12 +33,12 @@ public class Detector : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        _selected = false;
+        _collision = false;
     }
 
     public bool getSelectState()
     {
-        return _selected;
+        return _collision;
     }
 
     public GameObject getCollidedObject()

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - leftController
   - rightController
-  - side
   - anchor
   - presentMap
   - pastMap
   - futureMap
+  - site
+  - group1
   layers:
   - Default
   - TransparentFX
