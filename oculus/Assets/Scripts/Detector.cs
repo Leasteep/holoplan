@@ -22,8 +22,7 @@ public class Detector : MonoBehaviour {
     private void OnTriggerEnter (Collider obj)
     {
        
-        if (obj.gameObject.tag == "group1") //ToDo: Tags müssen an Connectetegruppen von sites angepasst werden 
-           // obj.gameObject.tag == "site" oder == "group1" oder == "group2" oder == ... 
+        if (obj.gameObject.tag == "site") 
         {
             _collision = true;
             _collidedObject = obj.gameObject;

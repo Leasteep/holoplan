@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class Site : MonoBehaviour {
 
-    public string connectedSitesTag;
-
+    //Array mit positiv (blau) verbundenen Baustellen
+    public GameObject[] positiveConnectedSites;
 
     public Material notSelected;
     public Material selected;
 
-    private Renderer renderer;
-    private int count = 0;
+    public Renderer renderer;
     private bool _selected;
-    private GameObject[] connectedSites;
-  
 
-    // Use this for initialization
+  
     void Start () { 
-        renderer = GetComponent<Renderer>();
+       // renderer = GetComponent<Renderer>();
         renderer.enabled = true;
         renderer.sharedMaterial = notSelected;
-     
-        connectedSites = GameObject.FindGameObjectsWithTag(connectedSitesTag); //speichert alle verbundenen Sites in einer Liste  //if abfrage ob null?
         _selected = false;
-
     }
+    
 
+    //aktiviert die aktuelle sowie alle verbundenen Baustellen
     public void selectAllConnectedSites()
     {
         selectSite();
@@ -34,6 +30,7 @@ public class Site : MonoBehaviour {
        
     }
 
+    //aktiviert die aktuelle Baustelle 
     private void selectSite()
     {
         _selected = true;
@@ -41,24 +38,31 @@ public class Site : MonoBehaviour {
        
     }
 
+    //aktiviert die verbundenen Baustellen 
     private void selectConnectedSites()
     {
-        Debug.Log(connectedSites.Length);
-        foreach (GameObject s in connectedSites)
+        //geht alle Elemente des Arrays durch 
+        foreach (GameObject s in positiveConnectedSites)
         {
-            Transform[] allChildren = GetComponentsInChildren<Transform>();
+            GameObject parentMap = s.transform.parent.gameObject;
 
-            if (s.transform.parent.gameObject.GetComponent<Renderer>().isVisible == false) //wenn die Map auf der die Site ist noch nicht angezeigt wird dann sichtbar machen und Site aktivieren 
+            if (parentMap.GetComponent<Renderer>().isVisible == false) 
+                //wenn die Map auf der die Site ist noch nicht angezeigt wird dann sichtbar machen und Site aktivieren 
             {
-                s.transform.parent.gameObject.GetComponent<Renderer>().enabled = true;
+                parentMap.GetComponent<Renderer>().enabled = true;
 
-                /*foreach (Transform child in allChildren)
+                //aktiviert alle Baustellen (Child von der ParentMap) 
+                Transform[] allChildren = parentMap.GetComponentsInChildren<Transform>(true);
+                foreach (Transform child in allChildren)
                 {
                     child.gameObject.SetActive(true);
                 }
-                */
+                
             }
+
+            Debug.Log(s.name);
             s.GetComponent<Site>().selectSite();
+           
            
             //ToDo: Verbindungen starten
         }
@@ -79,18 +83,17 @@ public class Site : MonoBehaviour {
 
     private void deselectConnectedSites()
     {
-        foreach (GameObject s in connectedSites)
+        foreach (GameObject s in positiveConnectedSites)
         {
-            s.GetComponent<Site>().deselectSite();
+            //s.GetComponent<Site>().deselectSite();
 
             GameObject parentMap = s.transform.parent.gameObject;
-            Transform[] allChildren = GetComponentsInChildren<Transform>();
-
+           
+            Transform[] allChildren = parentMap.GetComponentsInChildren<Transform>();
             int activeSites = 0;
-
             foreach (Transform child in allChildren)
             {
-
+                 Debug.Log(child.name);
                 //wenn keine andere Baustelle auf der Map noch selected ist und es nicht die mittle Map ist, dann ausblenden 
                 if (child.GetComponent<Site>().getSelectionState() == true)
                 {
@@ -101,11 +104,11 @@ public class Site : MonoBehaviour {
             if (activeSites == 0 && !parentMap.CompareTag("presentMap"))
             {
                 s.transform.parent.gameObject.GetComponent<Renderer>().enabled = false;
-               /*foreach (Transform child in allChildren)
+               foreach (Transform child in allChildren)
                 {
                     child.gameObject.SetActive(false);
                 }
-                */
+                
             } 
             
         }
@@ -115,6 +118,6 @@ public class Site : MonoBehaviour {
     {
         return _selected;
     }
-   
+
 }
 

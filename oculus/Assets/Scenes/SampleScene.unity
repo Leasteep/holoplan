@@ -189,15 +189,15 @@ GameObject:
   - component: {fileID: 252788689}
   - component: {fileID: 252788693}
   - component: {fileID: 252788692}
-  - component: {fileID: 252788691}
   - component: {fileID: 252788690}
+  - component: {fileID: 252788691}
   m_Layer: 0
-  m_Name: OK
-  m_TagString: Untagged
+  m_Name: 1.3
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &252788689
 Transform:
   m_ObjectHideFlags: 0
@@ -231,12 +231,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 252788688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e04b6cd3936dd4c98f7040ca6c4d95, type: 3}
+  m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 252788692}
+  positiveConnectedSites:
+  - {fileID: 1438175857}
+  - {fileID: 1026603841}
+  - {fileID: 330218357}
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 252788692}
 --- !u!23 &252788692
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -405,12 +409,12 @@ GameObject:
   - component: {fileID: 330218359}
   - component: {fileID: 330218360}
   m_Layer: 0
-  m_Name: Side
-  m_TagString: Untagged
+  m_Name: 3.1
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &330218358
 Transform:
   m_ObjectHideFlags: 0
@@ -447,9 +451,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: Untagged
+  positiveConnectedSites:
+  - {fileID: 1026603841}
+  - {fileID: 1438175857}
+  - {fileID: 252788688}
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 330218361}
 --- !u!23 &330218361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -505,12 +513,12 @@ GameObject:
   - component: {fileID: 388370131}
   - component: {fileID: 388370135}
   m_Layer: 0
-  m_Name: Side
-  m_TagString: group1
+  m_Name: 1.1
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &388370130
 Transform:
   m_ObjectHideFlags: 0
@@ -590,9 +598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: group1
+  positiveConnectedSites: []
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 388370133}
 --- !u!1 &519103916
 GameObject:
   m_ObjectHideFlags: 0
@@ -5923,12 +5932,12 @@ GameObject:
   - component: {fileID: 923717773}
   - component: {fileID: 923717774}
   m_Layer: 0
-  m_Name: notOK
-  m_TagString: Untagged
+  m_Name: 3.2
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &923717772
 Transform:
   m_ObjectHideFlags: 0
@@ -5965,9 +5974,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: Untagged
+  positiveConnectedSites: []
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 923717775}
 --- !u!23 &923717775
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6152,8 +6162,8 @@ GameObject:
   - component: {fileID: 1003072928}
   - component: {fileID: 1003072929}
   m_Layer: 0
-  m_Name: OK
-  m_TagString: group1
+  m_Name: 3
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6194,9 +6204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: group1
+  positiveConnectedSites: []
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 1003072930}
 --- !u!23 &1003072930
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6252,8 +6263,8 @@ GameObject:
   - component: {fileID: 1026603844}
   - component: {fileID: 1026603843}
   m_Layer: 0
-  m_Name: notOK
-  m_TagString: group1
+  m_Name: 2
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6294,9 +6305,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: group1
+  positiveConnectedSites:
+  - {fileID: 1438175857}
+  - {fileID: 330218357}
+  - {fileID: 252788688}
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 1026603845}
 --- !u!23 &1026603845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6762,8 +6777,8 @@ GameObject:
   - component: {fileID: 1438175858}
   - component: {fileID: 1438175859}
   m_Layer: 0
-  m_Name: Site
-  m_TagString: group1
+  m_Name: 1
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6779,9 +6794,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: group1
+  positiveConnectedSites:
+  - {fileID: 1026603841}
+  - {fileID: 330218357}
+  - {fileID: 252788688}
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 1438175860}
 --- !u!65 &1438175859
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6966,12 +6985,12 @@ GameObject:
   - component: {fileID: 1586160081}
   - component: {fileID: 1586160082}
   m_Layer: 0
-  m_Name: OK
-  m_TagString: Untagged
+  m_Name: 3.3
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1586160080
 Transform:
   m_ObjectHideFlags: 0
@@ -7008,9 +7027,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: Untagged
+  positiveConnectedSites: []
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 1586160083}
 --- !u!23 &1586160083
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7174,12 +7194,12 @@ GameObject:
   - component: {fileID: 1770145879}
   - component: {fileID: 1770145878}
   m_Layer: 0
-  m_Name: notOK
-  m_TagString: group1
+  m_Name: 1.2
+  m_TagString: site
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1770145877
 Transform:
   m_ObjectHideFlags: 0
@@ -7216,9 +7236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda744871f9d954b837c2c581b28a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedSitesTag: group1
+  positiveConnectedSites: []
   notSelected: {fileID: 2100000, guid: 556fb592c322c754b9e379f0e50f7923, type: 2}
   selected: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+  renderer: {fileID: 1770145880}
 --- !u!23 &1770145880
 MeshRenderer:
   m_ObjectHideFlags: 0
