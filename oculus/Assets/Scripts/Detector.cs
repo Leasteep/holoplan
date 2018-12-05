@@ -6,12 +6,12 @@ public class Detector : MonoBehaviour {
 
     private bool _collision;
     private GameObject _collidedObject;
-    
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start() {
 
         _collision = false;
-	}
+    }
 
     /* Update is called once per frame
     private void Update()
@@ -19,24 +19,34 @@ public class Detector : MonoBehaviour {
         _selected = false;
     }
     */
-    private void OnTriggerEnter (Collider obj)
+    private void OnTriggerEnter(Collider obj)
     {
-       
-        if (obj.gameObject.tag == "site") 
+        Debug.Log("Hall0");
+
+        if (obj.gameObject.tag == "site")
         {
-            _collision = true;
-            _collidedObject = obj.gameObject;
-        
+           if (_collision == false)
+            {
+                _collision = true;
+                _collidedObject = obj.gameObject;
+           }
+           else if (_collision == true)
+            {
+                _collision = false;
+            }
+
+
         }
-       
     }
 
-    private void OnTriggerExit(Collider other)
+
+   /* private void OnTriggerExit(Collider other)
     {
         _collision = false;
     }
 
-    public bool getSelectState()
+*/
+    public bool getCollisionState()
     {
         return _collision;
     }
@@ -46,3 +56,4 @@ public class Detector : MonoBehaviour {
         return _collidedObject;
     }
 }
+

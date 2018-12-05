@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// collider Player ? 
+
 public class VRManipulation : MonoBehaviour {
 
     
@@ -33,7 +33,6 @@ public class VRManipulation : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
        // Physics.IgnoreCollision(control, _leftControllerManipObject);
         _leftControllerPressed = false;
         _rightControllerPressed = false;
@@ -146,7 +145,6 @@ public class VRManipulation : MonoBehaviour {
         {
             _leftController = controller;
             _leftControllerManipObject = ParentMap;
-           // this.GetComponent<DefineChildren>().setChildren(_leftControllerManipObject);
             _leftControllerPressed = true;
             _lastLeftControllerPos = controller.transform.position;
             
@@ -155,7 +153,6 @@ public class VRManipulation : MonoBehaviour {
         {
             _rightController = controller;
             _rightControllerManipObject = ParentMap;
-            //this.GetComponent<DefineChildren>().setChildren(_rightControllerManipObject);
             _rightControllerPressed = true;
             _lastRightControllerPos = controller.transform.position;
         }
@@ -179,21 +176,6 @@ public class VRManipulation : MonoBehaviour {
         }
     }
 
-    // change color of the touched site, and enable the childMaps
-    public void manipulateSite(GameObject site)
-    {
-        if (_siteSelected == false)
-        {
-            site.GetComponent<Site>().selectAllConnectedSites();
-            _siteSelected = true;
-        }
-        else if (_siteSelected == true)
-        {
-            site.GetComponent<Site>().deselectAllConnectedSites();
-            _siteSelected = false; 
-        }
-        
-       
-    }
+
 
 }

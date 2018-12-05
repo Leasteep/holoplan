@@ -12,6 +12,7 @@ TagManager:
   - futureMap
   - site
   - group1
+  - map
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - GUI
   - 
   - 
   - 

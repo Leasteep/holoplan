@@ -5,10 +5,12 @@ using UnityEngine;
 public class VRManipulative : MonoBehaviour {
 
     public VRManipulation VRManip;
+    public ActivateSites ActivateSites;
     public GameObject Detector;
 
     private bool _pressed;
     private bool _collided;
+    private GameObject _site;
 
     //left: -0.0352998 -0.003397927 0.07160564
     //right: 03699808 -0.00299 0.07200663
@@ -37,14 +39,18 @@ public class VRManipulative : MonoBehaviour {
             }
         }
 
-       if (Detector.GetComponent<Detector>().getSelectState() == true && _collided == false) //wenn der Block am Finger collidiert und vorher noch nicht collidiert ist 
+       if (Detector.GetComponent<Detector>().getCollisionState() == true && _collided == false) //wenn der Block am Finger collidiert und vorher noch nicht collidiert ist 
         {
+            Debug.Log("aktive");
             _collided = true;
-            VRManip.manipulateSite(Detector.GetComponent<Detector>().getCollidedObject());
+            _site = Detector.GetComponent<Detector>().getCollidedObject();
+            ActivateSites.setActive(_site);
           
         }
-       else if (Detector.GetComponent<Detector>().getSelectState() == false)
+       else if (Detector.GetComponent<Detector>().getCollisionState() == false && _collided == true)
         {
+            Debug.Log("inaktive");
+            ActivateSites.setInactive(_site);
             _collided = false;
         }
 
