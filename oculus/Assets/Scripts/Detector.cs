@@ -21,7 +21,6 @@ public class Detector : MonoBehaviour {
     */
     private void OnTriggerEnter(Collider obj)
     {
-        Debug.Log("Hall0");
 
         if (obj.gameObject.tag == "site")
         {

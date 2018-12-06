@@ -10,14 +10,12 @@ public class Site : MonoBehaviour {
 
     public Material notSelected;
     public Material selected;
-    public Renderer renderer; //oder über getComponent?
+
 
     private bool _selected;
 
     void Start () { 
-       // renderer = GetComponent<Renderer>();
-        renderer.enabled = true;
-        renderer.sharedMaterial = notSelected;
+
         _selected = false;
     }
 
@@ -27,16 +25,16 @@ public class Site : MonoBehaviour {
     {
         _selected = true;
         Debug.Log("selected");
-        renderer = GetComponent<Renderer>();
-        renderer.sharedMaterial = selected;
+        gameObject.GetComponent<MeshRenderer>().material = selected;
     }
 
+   
     public void deselectSite()
     {
-        _selected = false;
-        renderer = GetComponent<Renderer>();
-        renderer.sharedMaterial = notSelected;  
+        _selected = false; 
+        gameObject.GetComponent<MeshRenderer>().material = notSelected;
     }
+    
 
     public bool getSelectionState()
     {
