@@ -6864,7 +6864,6 @@ GameObject:
   - component: {fileID: 896107475}
   - component: {fileID: 896107480}
   - component: {fileID: 896107478}
-  - component: {fileID: 896107479}
   m_Layer: 0
   m_Name: OVRCameraRig
   m_TagString: Untagged
@@ -6984,21 +6983,6 @@ MonoBehaviour:
   MoveStrength: 1
   ScaleStrength: 5
   ParentMap: {fileID: 969883492}
---- !u!114 &896107479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 896107473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ce0f6a7c545aa4e87b212168d1d3c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PresentMap: {fileID: 1158713789}
-  FutureMap: {fileID: 1322918920}
-  PastMap: {fileID: 1497480593}
-  MapAnchor: {fileID: 1129296597}
 --- !u!114 &896107480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7761,7 +7745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1322918921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8555,6 +8539,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0a424bab1a59af441b2bbe6ebcd6fa39, type: 2}
+    - target: {fileID: 100000, guid: 89bc1f44f670ecf45a4e06f3a0ee9957, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89bc1f44f670ecf45a4e06f3a0ee9957, type: 3}
   m_IsPrefabAsset: 0
@@ -8625,6 +8613,10 @@ Prefab:
     - target: {fileID: 100000, guid: 6457dd3a734a58a488f633cd27ad24c9, type: 3}
       propertyPath: m_Name
       value: connection_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6457dd3a734a58a488f633cd27ad24c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6457dd3a734a58a488f633cd27ad24c9, type: 3}

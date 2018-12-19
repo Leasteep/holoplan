@@ -41,16 +41,32 @@ public class VRManipulative : MonoBehaviour {
 
        if (Detector.GetComponent<Detector>().getCollisionState() == true && _collided == false) //wenn der Block am Finger collidiert und vorher noch nicht collidiert ist 
         {
-            Debug.Log("aktive");
-            _collided = true;
+            
             _site = Detector.GetComponent<Detector>().getCollidedObject();
-            ActivateSites.setActive(_site);
-          
+            if (_site.GetComponent<Site>().getSelectionState() == false)
+            {
+                Debug.Log("aktive");
+                ActivateSites.setActive(_site);
+            }
+            else
+            {
+                ActivateSites.setInactive(_site);
+            }
+            _collided = true;
+
+
         }
        else if (Detector.GetComponent<Detector>().getCollisionState() == false && _collided == true)
         {
             Debug.Log("inaktive");
-            ActivateSites.setInactive(_site);
+            if (_site.GetComponent<Site>().getSelectionState() == true)
+            {
+                ActivateSites.setInactive(_site);
+            }
+            else
+            {
+                ActivateSites.setActive(_site);
+            }
             _collided = false;
         }
 
@@ -85,5 +101,7 @@ public class VRManipulative : MonoBehaviour {
             }
         }
     }
+
+    
 }
 

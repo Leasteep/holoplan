@@ -6,18 +6,22 @@ using UnityEngine;
 
 public class ActivateSites : MonoBehaviour
 {
-
     private List<GameObject> siteList;
+    private GameObject _lastSelectedSite;
 
     // Use this for initialization
     void Start()
     {
-
+        _lastSelectedSite = null;
     }
-
 
     public void setActive(GameObject site)
     {
+        if (_lastSelectedSite != null && !site.Equals(_lastSelectedSite))
+        {
+            setInactive(_lastSelectedSite);
+        }
+
         GameObject[] siteArray = site.GetComponent<Site>().getConnectedSites();
         siteList = siteArray.ToList();
         siteList.Add(site);
@@ -35,15 +39,15 @@ public class ActivateSites : MonoBehaviour
 
             s.GetComponent<Site>().selectSite();
 
-            ParticleSystem em;
-            if (s.GetComponentInChildren<ParticleSystem>() != null)
+            GameObject connection;
+            if (s.GetComponent<Transform>().childCount > 1)
             {
                 int count = s.GetComponent<Transform>().childCount;
 
                 for(int i = 0 ; i < count; i++)
                 {
-                    em = s.transform.GetChild(i).gameObject.GetComponent<ParticleSystem>();
-                    em.Play();
+                    connection = s.transform.GetChild(i).gameObject;
+                    connection.SetActive(true);
                 }
                 
             }
@@ -51,7 +55,9 @@ public class ActivateSites : MonoBehaviour
             Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
 
             //ToDo: Verbindungen starten
+
         }
+        _lastSelectedSite = site;
     }
 
     public void setInactive(GameObject site)
@@ -75,25 +81,22 @@ public class ActivateSites : MonoBehaviour
 
             s.GetComponent<Site>().deselectSite();
 
-            ParticleSystem em;
-            if (s.GetComponentInChildren<ParticleSystem>() != null)
+            GameObject connection;
+            if (s.GetComponent<Transform>().childCount > 1)
             {
                 int count = s.GetComponent<Transform>().childCount;
 
                 for (int i = 0; i < count; i++)
                 {
-                    em = s.transform.GetChild(i).gameObject.GetComponent<ParticleSystem>();
-                    em.Clear();
-                    em.Stop();
+                    connection = s.transform.GetChild(i).gameObject;
+                    connection.SetActive(false);
                 }
+
+                //Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
+
 
             }
 
-            //Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
-
-
         }
-
     }
-
 }
