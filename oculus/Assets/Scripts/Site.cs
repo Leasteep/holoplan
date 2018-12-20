@@ -31,8 +31,8 @@ public class Site : MonoBehaviour {
    
     public void deselectSite()
     {
-        _selected = false; 
-        gameObject.GetComponent<MeshRenderer>().material = notSelected;
+        _selected = false;
+        startFadeingOut();
     }
     
 
@@ -46,6 +46,19 @@ public class Site : MonoBehaviour {
         return connectedSites;
     }
 
-  
+    public void startFadeingOut()
+    {
+        StartCoroutine("FadeOut");
+    }
+
+    IEnumerator FadeOut()
+    {
+        for (float f = 1.0f; f >= -0.05f; f -= 0.1f)
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+        gameObject.GetComponent<MeshRenderer>().material = notSelected;
+    }
+
 }
 

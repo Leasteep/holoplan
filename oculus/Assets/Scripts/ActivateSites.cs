@@ -3,11 +3,13 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class ActivateSites : MonoBehaviour
 {
     private List<GameObject> siteList;
     private GameObject _lastSelectedSite;
+    private GameObject _connection;
 
     // Use this for initialization
     void Start()
@@ -19,9 +21,11 @@ public class ActivateSites : MonoBehaviour
     {
         if (_lastSelectedSite != null && !site.Equals(_lastSelectedSite))
         {
+            Debug.Log("schleife");
             setInactive(_lastSelectedSite);
         }
 
+        Debug.Log("Wooo");
         GameObject[] siteArray = site.GetComponent<Site>().getConnectedSites();
         siteList = siteArray.ToList();
         siteList.Add(site);
@@ -37,22 +41,32 @@ public class ActivateSites : MonoBehaviour
 
             }
 
-            s.GetComponent<Site>().selectSite();
-
-            GameObject connection;
-            if (s.GetComponent<Transform>().childCount > 1)
+            if (s.GetComponent<Transform>().childCount > 0)
             {
                 int count = s.GetComponent<Transform>().childCount;
 
-                for(int i = 0 ; i < count; i++)
+                for (int i = 0; i < count; i++)
                 {
-                    connection = s.transform.GetChild(i).gameObject;
-                    connection.SetActive(true);
+
+                    _connection = s.transform.GetChild(i).gameObject;
+                    
+                    startFadeingIn();
+                    // von 0 auf 1 faden 
+
+                    /*for (float f = 0.05f; f <= 0.75f; f += 0.05f)
+                    {
+                        Color c = connection.GetComponent<Renderer>().material.color;
+                        c.a = f;
+                        connection.GetComponent<Renderer>().material.color = c;
+                        Thread.Sleep(50); 
+                    }*/
+
                 }
-                
+
             }
+            s.GetComponent<Site>().selectSite();
             // aktiviere Child ParticleSystem
-            Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
+            //Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
 
             //ToDo: Verbindungen starten
 
@@ -62,6 +76,10 @@ public class ActivateSites : MonoBehaviour
 
     public void setInactive(GameObject site)
     {
+        if (_lastSelectedSite != null && !site.Equals(_lastSelectedSite))
+        {
+            setActive(_lastSelectedSite);
+        }
         GameObject[] siteArray = site.GetComponent<Site>().getConnectedSites();
         siteList = siteArray.ToList();
         siteList.Add(site);
@@ -81,15 +99,29 @@ public class ActivateSites : MonoBehaviour
 
             s.GetComponent<Site>().deselectSite();
 
-            GameObject connection;
-            if (s.GetComponent<Transform>().childCount > 1)
+           
+            if (s.GetComponent<Transform>().childCount > 0)
             {
                 int count = s.GetComponent<Transform>().childCount;
 
                 for (int i = 0; i < count; i++)
                 {
-                    connection = s.transform.GetChild(i).gameObject;
-                    connection.SetActive(false);
+                    //von 1 auf 0 faden
+                    _connection = s.transform.GetChild(i).gameObject;
+
+                    startFadeingOut();
+                    /*
+                    for (float f = 0.05f; f >= -0.05f; f -= 0.05f)
+                    {
+                        Color c = connection.GetComponent<Renderer>().material.color;
+                        c.a = f;
+                        connection.GetComponent<Renderer>().material.color = c;
+                        Thread.Sleep(50);
+                    }
+                    */
+
+                    
+                    
                 }
 
                 //Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
@@ -98,5 +130,42 @@ public class ActivateSites : MonoBehaviour
             }
 
         }
+        _lastSelectedSite = site;
     }
+    
+    IEnumerator FadeIn()
+    {
+        GameObject connection = _connection;
+        connection.SetActive(true);
+        for (float f = 0.05f; f <= 0.75f; f += 0.05f)
+        {
+            Color c = connection.GetComponent<Renderer>().material.color;
+            c.a = f;
+            connection.GetComponent<Renderer>().material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    IEnumerator FadeOut()
+    {
+        GameObject connection = _connection;
+        for (float f = 0.75f; f >= -0.05f; f -= 0.2f)
+        {
+            Color c = connection.GetComponent<Renderer>().material.color;
+            c.a = f;
+            connection.GetComponent<Renderer>().material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+        connection.SetActive(false);
+    }
+
+    public void startFadeingIn()
+    {
+        StartCoroutine("FadeIn");
+    }
+    public void startFadeingOut()
+    {
+        StartCoroutine("FadeOut");
+    }
+    
 }

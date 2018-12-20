@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VRManipulative : MonoBehaviour {
+public class VRManipulative : MonoBehaviour
+{
 
     public VRManipulation VRManip;
     public ActivateSites ActivateSites;
     public GameObject Detector;
+    public AudioClip hapticAudioClip;
+    
 
     private bool _pressed;
     private bool _collided;
@@ -16,10 +19,11 @@ public class VRManipulative : MonoBehaviour {
     //right: 03699808 -0.00299 0.07200663
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _pressed = false;
-        _collided = false;    
-	}
+        _collided = false;
+    }
 
     private void Update()
     {
@@ -39,13 +43,22 @@ public class VRManipulative : MonoBehaviour {
             }
         }
 
-       if (Detector.GetComponent<Detector>().getCollisionState() == true && _collided == false) //wenn der Block am Finger collidiert und vorher noch nicht collidiert ist 
+        if (Detector.GetComponent<Detector>().getCollisionState() == true && _collided == false) //wenn der Block am Finger collidiert und vorher noch nicht collidiert ist 
         {
-            
+            OVRHapticsClip oVRHapticsClip = new OVRHapticsClip(hapticAudioClip);
+            if(this.tag == "leftController")
+            {
+                OVRHaptics.LeftChannel.Preempt(oVRHapticsClip);
+            }
+            if(this.tag == "rightController")
+            {
+                OVRHaptics.RightChannel.Preempt(oVRHapticsClip);
+            }
             _site = Detector.GetComponent<Detector>().getCollidedObject();
+            Debug.Log(_site.name + "selected");
             if (_site.GetComponent<Site>().getSelectionState() == false)
             {
-                Debug.Log("aktive");
+             //   Debug.Log("aktive");
                 ActivateSites.setActive(_site);
             }
             else
@@ -56,21 +69,34 @@ public class VRManipulative : MonoBehaviour {
 
 
         }
-       else if (Detector.GetComponent<Detector>().getCollisionState() == false && _collided == true)
+        if (Detector.GetComponent<Detector>().getCollisionState() == false && _collided == true)
         {
-            Debug.Log("inaktive");
+            OVRHapticsClip oVRHapticsClip = new OVRHapticsClip(hapticAudioClip);
+            if (this.tag == "leftController")
+            {
+                OVRHaptics.LeftChannel.Preempt(oVRHapticsClip);
+            }
+            if (this.tag == "rightController")
+            {
+                OVRHaptics.RightChannel.Preempt(oVRHapticsClip);
+            }
+            _site = Detector.GetComponent<Detector>().getCollidedObject();
+            Debug.Log(_site.name + "deselected");
+
             if (_site.GetComponent<Site>().getSelectionState() == true)
             {
+                Debug.Log("1");
                 ActivateSites.setInactive(_site);
             }
             else
             {
+                Debug.Log("2");
                 ActivateSites.setActive(_site);
             }
             _collided = false;
         }
 
-        
+
     }
 
     private void ControllerUnpressed()
@@ -83,7 +109,7 @@ public class VRManipulative : MonoBehaviour {
 
     private void OnTriggerStay(Collider other) //solange der Trigger gedrückt wird 
     {
-        
+
         if (gameObject.tag == "leftController")
         {
             if ((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)) > 0.8 && !_pressed) //>0.8 damit der Trigger erst als gedrückt gilt wenn er weiter reingedrückt wurde und nicht sobald er nur leicht berührt wird 
@@ -102,6 +128,7 @@ public class VRManipulative : MonoBehaviour {
         }
     }
 
-    
+
 }
+
 
