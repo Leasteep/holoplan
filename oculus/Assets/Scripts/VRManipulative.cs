@@ -15,9 +15,7 @@ public class VRManipulative : MonoBehaviour
     private bool _collided;
     private GameObject _site;
 
-    //left: -0.0352998 -0.003397927 0.07160564
-    //right: 03699808 -0.00299 0.07200663
-
+    
     // Use this for initialization
     void Start()
     {
@@ -61,10 +59,7 @@ public class VRManipulative : MonoBehaviour
              //   Debug.Log("aktive");
                 ActivateSites.setActive(_site);
             }
-            else
-            {
-                ActivateSites.setInactive(_site);
-            }
+           
             _collided = true;
 
 
@@ -88,11 +83,7 @@ public class VRManipulative : MonoBehaviour
                 Debug.Log("1");
                 ActivateSites.setInactive(_site);
             }
-            else
-            {
-                Debug.Log("2");
-                ActivateSites.setActive(_site);
-            }
+            
             _collided = false;
         }
 

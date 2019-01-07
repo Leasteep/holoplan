@@ -24,7 +24,6 @@ public class Site : MonoBehaviour {
     public void selectSite()
     {
         _selected = true;
-        Debug.Log("selected");
         gameObject.GetComponent<MeshRenderer>().material = selected;
     }
 

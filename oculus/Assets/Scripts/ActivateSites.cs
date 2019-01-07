@@ -21,11 +21,11 @@ public class ActivateSites : MonoBehaviour
     {
         if (_lastSelectedSite != null && !site.Equals(_lastSelectedSite))
         {
-            Debug.Log("schleife");
+            Debug.Log("schleife" + _lastSelectedSite.name);
             setInactive(_lastSelectedSite);
         }
 
-        Debug.Log("Wooo");
+        Debug.Log("Wooo" + site.name);
         GameObject[] siteArray = site.GetComponent<Site>().getConnectedSites();
         siteList = siteArray.ToList();
         siteList.Add(site);
@@ -76,10 +76,7 @@ public class ActivateSites : MonoBehaviour
 
     public void setInactive(GameObject site)
     {
-        if (_lastSelectedSite != null && !site.Equals(_lastSelectedSite))
-        {
-            setActive(_lastSelectedSite);
-        }
+       
         GameObject[] siteArray = site.GetComponent<Site>().getConnectedSites();
         siteList = siteArray.ToList();
         siteList.Add(site);

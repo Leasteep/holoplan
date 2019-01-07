@@ -14,7 +14,7 @@ public class GUISwap : MonoBehaviour
     private bool _helpActive;
     private bool _pressed;
     private int _pageNum;
-    private Renderer renderer;
+    private MeshRenderer renderer;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class GUISwap : MonoBehaviour
         _gui.SetActive(true);
         _help.SetActive(false);
         _pageNum = 3;
-        renderer = _help.GetComponent<Renderer>();
+        renderer = _help.GetComponent<MeshRenderer>();
 
     }
 
