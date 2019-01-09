@@ -41,7 +41,7 @@ public class ActivateSites : MonoBehaviour
 
             }
 
-            if (s.GetComponent<Transform>().childCount > 0)
+           /* if (s.GetComponent<Transform>().childCount > 0)
             {
                 int count = s.GetComponent<Transform>().childCount;
 
@@ -51,32 +51,41 @@ public class ActivateSites : MonoBehaviour
                     _connection = s.transform.GetChild(i).gameObject;
                     
                     startFadeingIn();
-                    // von 0 auf 1 faden 
-
-                    /*for (float f = 0.05f; f <= 0.75f; f += 0.05f)
-                    {
-                        Color c = connection.GetComponent<Renderer>().material.color;
-                        c.a = f;
-                        connection.GetComponent<Renderer>().material.color = c;
-                        Thread.Sleep(50); 
-                    }*/
-
+                 
                 }
 
             }
-            s.GetComponent<Site>().selectSite();
-            // aktiviere Child ParticleSystem
-            //Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
+            */
 
-            //ToDo: Verbindungen starten
+            s.GetComponent<Site>().selectSite();
+           
+        }
+        if (site.GetComponent<Transform>().childCount > 0)
+        {
+            int count = site.GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < count; i++)
+            {
+
+                _connection = site.transform.GetChild(i).gameObject;
+
+                startFadeingIn();
+
+            }
 
         }
+
         _lastSelectedSite = site;
     }
 
     public void setInactive(GameObject site)
     {
-       
+        if (_lastSelectedSite != null && !site.Equals(_lastSelectedSite))
+        {
+            Debug.Log("schleife" + _lastSelectedSite.name);
+            setInactive(_lastSelectedSite);
+        }
+
         GameObject[] siteArray = site.GetComponent<Site>().getConnectedSites();
         siteList = siteArray.ToList();
         siteList.Add(site);
@@ -96,32 +105,19 @@ public class ActivateSites : MonoBehaviour
 
             s.GetComponent<Site>().deselectSite();
 
-           
-            if (s.GetComponent<Transform>().childCount > 0)
+            }
+
+        if (site.GetComponent<Transform>().childCount > 0)
+        {
+            int count = site.GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < count; i++)
             {
-                int count = s.GetComponent<Transform>().childCount;
+                //von 1 auf 0 faden
+                _connection = site.transform.GetChild(i).gameObject;
 
-                for (int i = 0; i < count; i++)
-                {
-                    //von 1 auf 0 faden
-                    _connection = s.transform.GetChild(i).gameObject;
+                startFadeingOut();
 
-                    startFadeingOut();
-                    /*
-                    for (float f = 0.05f; f >= -0.05f; f -= 0.05f)
-                    {
-                        Color c = connection.GetComponent<Renderer>().material.color;
-                        c.a = f;
-                        connection.GetComponent<Renderer>().material.color = c;
-                        Thread.Sleep(50);
-                    }
-                    */
-
-                    
-                    
-                }
-
-                //Debug.Log(s.GetComponent<Site>().getSelectionState().ToString() + s.name);
 
 
             }

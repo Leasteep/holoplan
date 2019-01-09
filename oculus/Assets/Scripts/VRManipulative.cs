@@ -56,34 +56,20 @@ public class VRManipulative : MonoBehaviour
             Debug.Log(_site.name + "selected");
             if (_site.GetComponent<Site>().getSelectionState() == false)
             {
-             //   Debug.Log("aktive");
+            
                 ActivateSites.setActive(_site);
+            }
+            else
+            {
+                ActivateSites.setInactive(_site);
             }
            
             _collided = true;
 
 
         }
-        if (Detector.GetComponent<Detector>().getCollisionState() == false && _collided == true)
-        {
-            OVRHapticsClip oVRHapticsClip = new OVRHapticsClip(hapticAudioClip);
-            if (this.tag == "leftController")
-            {
-                OVRHaptics.LeftChannel.Preempt(oVRHapticsClip);
-            }
-            if (this.tag == "rightController")
-            {
-                OVRHaptics.RightChannel.Preempt(oVRHapticsClip);
-            }
-            _site = Detector.GetComponent<Detector>().getCollidedObject();
-            Debug.Log(_site.name + "deselected");
-
-            if (_site.GetComponent<Site>().getSelectionState() == true)
-            {
-                Debug.Log("1");
-                ActivateSites.setInactive(_site);
-            }
-            
+        if (Detector.GetComponent<Detector>().getCollisionState() == false)
+        {   
             _collided = false;
         }
 

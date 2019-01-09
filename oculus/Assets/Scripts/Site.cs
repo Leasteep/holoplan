@@ -24,6 +24,7 @@ public class Site : MonoBehaviour {
     public void selectSite()
     {
         _selected = true;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
         gameObject.GetComponent<MeshRenderer>().material = selected;
     }
 
@@ -32,6 +33,10 @@ public class Site : MonoBehaviour {
     {
         _selected = false;
         startFadeingOut();
+        if (!this.transform.parent.gameObject.tag.Equals("presentMap"))
+            {
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
     }
     
 

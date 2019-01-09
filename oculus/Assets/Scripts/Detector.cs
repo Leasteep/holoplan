@@ -24,27 +24,20 @@ public class Detector : MonoBehaviour {
 
         if (obj.gameObject.tag == "site")
         {
-           if (_collision == false)
-            {
+           
                 _collision = true;
                 _collidedObject = obj.gameObject;
-           }
-           else if (_collision == true)
-            {
-                _collision = false;
-            }
-
-
+         
         }
     }
 
 
-   /* private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         _collision = false;
     }
 
-*/
+
     public bool getCollisionState()
     {
         return _collision;

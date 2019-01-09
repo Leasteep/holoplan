@@ -9,7 +9,7 @@ public class GUISwap : MonoBehaviour
     public GameObject _help;
     public Material _page01;
     public Material _page02;
-    public Material _page03;
+   
 
     private bool _helpActive;
     private bool _pressed;
@@ -53,16 +53,10 @@ public class GUISwap : MonoBehaviour
                     _pageNum = 2;
                     System.Threading.Thread.Sleep(500);
                 }
-
-                else if (_pageNum == 2)
-                {
-                    renderer.material = _page03;
-                    _pageNum = 3;
-                    System.Threading.Thread.Sleep(500);
-                }
+                
 
                 // wenn Seite 3 schon erreicht ist, blende Hilfe wieder aus
-                else if (_pageNum == 3)
+                else if (_pageNum == 2)
                 {
                     _gui.SetActive(true);
                     _help.SetActive(false);

@@ -45,7 +45,7 @@ public class ScaleChangesMap : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (transform.localScale.x < 2.5)
+        if (transform.localScale.x < 1.5)
         {
             foreach (Renderer mapRenderer in mapsRenderer)
             {
@@ -53,14 +53,15 @@ public class ScaleChangesMap : MonoBehaviour {
             }
 
         }
-
-        else if (transform.localScale.x < 5.5)
+/*
+        else if (transform.localScale.x < 2.5)
         {
             foreach (Renderer mapRenderer in mapsRenderer)
             {
                 mapRenderer.sharedMaterial = map_middleScale;
             }
         }
+        */
 
         else {
 
