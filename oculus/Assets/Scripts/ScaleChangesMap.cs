@@ -12,9 +12,12 @@ public class ScaleChangesMap : MonoBehaviour {
     public GameObject FutureMap;
     public GameObject PastMap;
 
+
     private Renderer rendererPresentMap;
     private Renderer rendererFutureMap;
     private Renderer rendererPastMap;
+
+
 
     private ArrayList mapsRenderer;
 
@@ -30,10 +33,12 @@ public class ScaleChangesMap : MonoBehaviour {
         rendererFutureMap = FutureMap.GetComponent<Renderer>();
         rendererPastMap = PastMap.GetComponent<Renderer>();
 
+
       
         mapsRenderer.Add(rendererPresentMap);
         mapsRenderer.Add(rendererFutureMap);
         mapsRenderer.Add(rendererPastMap);
+
        
         foreach(Renderer mapRenderer in mapsRenderer)
         {

@@ -10,6 +10,8 @@ public class VRManipulation : MonoBehaviour {
     public float ScaleStrength = 1;
 
     public GameObject ParentMap;
+    public GameObject rightDetector;
+    public GameObject leftDetector;
 
    
     private GameObject _leftController;
@@ -141,8 +143,10 @@ public class VRManipulation : MonoBehaviour {
 
     public void ControllerPressed(GameObject controller, string ControllerTag, GameObject manipulatedObject) //manipulatedObject kann rausgenommen werden, wenn wir mit ParentMap arbeiten 
     {
+
         if(ControllerTag == "leftController")
         {
+            leftDetector.SetActive(false);
             _leftController = controller;
             _leftControllerManipObject = ParentMap;
             _leftControllerPressed = true;
@@ -151,6 +155,7 @@ public class VRManipulation : MonoBehaviour {
         }
         else if(ControllerTag == "rightController")
         {
+            rightDetector.SetActive(false);
             _rightController = controller;
             _rightControllerManipObject = ParentMap;
             _rightControllerPressed = true;
@@ -166,13 +171,16 @@ public class VRManipulation : MonoBehaviour {
 
     public void ControllerUnpressed(string ControllerTag)
     {
+        
         if (ControllerTag == "leftController")
         {
             _leftControllerPressed = false;
+            leftDetector.SetActive(true);
         }
         else if (ControllerTag == "rightController")
         {
             _rightControllerPressed = false;
+            rightDetector.SetActive(true);
         }
     }
 

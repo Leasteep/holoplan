@@ -34,6 +34,8 @@ public class Detector : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
+
+        Delay();
         _collision = false;
     }
 
@@ -47,5 +49,11 @@ public class Detector : MonoBehaviour {
     {
         return _collidedObject;
     }
+
+   IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
+    
 }
 
