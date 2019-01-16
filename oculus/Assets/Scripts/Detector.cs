@@ -52,7 +52,7 @@ public class Detector : MonoBehaviour {
 
    IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
     }
     
 }

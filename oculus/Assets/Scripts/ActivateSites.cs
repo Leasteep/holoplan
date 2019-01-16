@@ -58,6 +58,7 @@ public class ActivateSites : MonoBehaviour
             */
 
             s.GetComponent<Site>().selectSite();
+            Debug.Log(s.name + "active");
            
         }
         if (site.GetComponent<Transform>().childCount > 0)
@@ -80,11 +81,13 @@ public class ActivateSites : MonoBehaviour
 
     public void setInactive(GameObject site)
     {
+        
         if (_lastSelectedSite != null && !site.Equals(_lastSelectedSite))
         {
             Debug.Log("schleife" + _lastSelectedSite.name);
             setInactive(_lastSelectedSite);
         }
+    
 
         GameObject[] siteArray = site.GetComponent<Site>().getConnectedSites();
         siteList = siteArray.ToList();
@@ -104,6 +107,7 @@ public class ActivateSites : MonoBehaviour
 
 
             s.GetComponent<Site>().deselectSite();
+            Debug.Log(s.name + "inactive");
 
             }
 
