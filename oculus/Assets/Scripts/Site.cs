@@ -32,7 +32,8 @@ public class Site : MonoBehaviour {
     public void deselectSite()
     {
         _selected = false;
-        startFadeingOut();
+        // startFadeingOut();
+        gameObject.GetComponent<MeshRenderer>().material = notSelected;
         if (!this.transform.parent.gameObject.tag.Equals("presentMap"))
             {
             gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -55,7 +56,7 @@ public class Site : MonoBehaviour {
         StartCoroutine("FadeOut");
     }
 
-    IEnumerator FadeOut()
+   /** IEnumerator FadeOut()
     {
         for (float f = 1.0f; f >= -0.05f; f -= 0.1f)
         {
@@ -63,6 +64,7 @@ public class Site : MonoBehaviour {
         }
         gameObject.GetComponent<MeshRenderer>().material = notSelected;
     }
+    */
 
 }
 
