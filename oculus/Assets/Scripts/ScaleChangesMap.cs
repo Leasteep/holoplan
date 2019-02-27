@@ -1,81 +1,70 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ScaleChangesMap : MonoBehaviour {
-
-    public Material map_smallScale;
-    public Material map_middleScale;
-    public Material map_largeScale;
-
+/* This script is used to switch the material of the maps depending on the scale factor (of the mapAnchor)
+ * Therefore we use three map textures of the same part of Hamburg, but with different detail 
+ */
+public class ScaleChangesMap : MonoBehaviour
+{
+    public Material Map_smallScale;
+    public Material Map_middleScale;
+    public Material Map_largeScale;
     public GameObject PresentMap;
     public GameObject FutureMap;
     public GameObject PastMap;
 
-
-    private Renderer rendererPresentMap;
-    private Renderer rendererFutureMap;
-    private Renderer rendererPastMap;
-
-
-
-    private ArrayList mapsRenderer;
-
-    // auf map anchor ziehen, weil nicht map skaliert wird, sondern anchor
-    // dadurch wird indirekt die Map skaliert, da sie Child von anchor ist
-	// Use this for initialization
-
-    //wird immer für alle maps gemacht egal ob sichtbar oder nicht 
-	void Start () {
-
-        mapsRenderer = new ArrayList();
-        rendererPresentMap = PresentMap.GetComponent<Renderer>();
-        rendererFutureMap = FutureMap.GetComponent<Renderer>();
-        rendererPastMap = PastMap.GetComponent<Renderer>();
+    private Renderer _rendererPresentMap;
+    private Renderer _rendererFutureMap;
+    private Renderer _rendererPastMap;
+    private ArrayList _mapsRenderer;
 
 
-      
-        mapsRenderer.Add(rendererPresentMap);
-        mapsRenderer.Add(rendererFutureMap);
-        mapsRenderer.Add(rendererPastMap);
+    //initialise an array list with all renderers of the three maps and assign the large scale material to all
+    void Start()
+    {
+        _rendererPresentMap = PresentMap.GetComponent<Renderer>();
+        _rendererFutureMap = FutureMap.GetComponent<Renderer>();
+        _rendererPastMap = PastMap.GetComponent<Renderer>();
+        _mapsRenderer = new ArrayList();
+        _mapsRenderer.Add(_rendererPresentMap);
+        _mapsRenderer.Add(_rendererFutureMap);
+        _mapsRenderer.Add(_rendererPastMap);
 
-       
-        foreach(Renderer mapRenderer in mapsRenderer)
+        foreach (Renderer mapRenderer in _mapsRenderer)
         {
-            mapRenderer.sharedMaterial = map_largeScale;
+            mapRenderer.sharedMaterial = Map_largeScale;
         }
-
     }
 
-    // Update is called once per frame
-    void Update () {
-
+    /* checks the scale of the mapAnchor every frame
+     * (not of the maps because we only change the scale values of the anchor)
+     * The maps also scale because they are children of the anchor, but they don't change their scale values themselves
+     * depending on the scale factor we assign another material to the maps 
+     * Currently only the large and small scale are used, but it is also possible to use the middle scale again in future iterations
+     */
+    void Update()
+    {
         if (transform.localScale.x < 1.5)
         {
-            foreach (Renderer mapRenderer in mapsRenderer)
+            foreach (Renderer mapRenderer in _mapsRenderer)
             {
-                mapRenderer.sharedMaterial = map_largeScale;
+                mapRenderer.sharedMaterial = Map_largeScale;
             }
-
         }
-/*
-        else if (transform.localScale.x < 2.5)
+           /*
+            else if (transform.localScale.x < 2.5) {
+                foreach (Renderer mapRenderer in mapsRenderer) {
+                    mapRenderer.sharedMaterial = map_middleScale;
+                }
+            }
+            */
+
+        else
         {
-            foreach (Renderer mapRenderer in mapsRenderer)
+            foreach (Renderer mapRenderer in _mapsRenderer)
             {
-                mapRenderer.sharedMaterial = map_middleScale;
+                mapRenderer.sharedMaterial = Map_smallScale;
             }
         }
-        */
-
-        else {
-
-            foreach (Renderer mapRenderer in mapsRenderer)
-            {
-                mapRenderer.sharedMaterial = map_smallScale;
-            }
-        }
-
-
     }
 }
