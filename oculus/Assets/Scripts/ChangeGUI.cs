@@ -2,47 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeGUI : MonoBehaviour {
+/* this script is used to change our GUI (Ebenenuebersicht) depending on the activated maps 
+ * this should be a visual help to support the work with the three maps 
+ */
+public class ChangeGUI : MonoBehaviour
+{
+    public Material NoDisplay;
+    public Material Future;
+    public Material Past;
+    public Material FuturePast;
+    public GameObject FutureMap;
+    public GameObject PastMap;
+    public GameObject Gui;
 
-    public Material noDisplay;
-    public Material future;
-    public Material past;
-    public Material futurePast;
+    private Renderer _guiRenderer;
 
-    public GameObject futureMap;
-    public GameObject pastMap;
-
-    public GameObject gui;
-
-    private Renderer guiRenderer;
-
-	// Use this for initialization
-	void Start () {
-		
-       guiRenderer = gui.GetComponent<Renderer>();
-        
+    // initialise the renderer of the gui object
+    void Start()
+    {
+        _guiRenderer = Gui.GetComponent<Renderer>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-        if(futureMap.activeSelf && pastMap.activeSelf)
+
+    /* checks wich maps are active and changes the material, if neither the top nor the bottom map are active the GUI is invisible (noDisplay)
+     * by this "invisible" material we have the chance to keep the whole gui always active 
+     */
+    void Update()
+    {
+        if (FutureMap.activeSelf && PastMap.activeSelf)
         {
-            guiRenderer.sharedMaterial = futurePast;
+            _guiRenderer.sharedMaterial = FuturePast;
         }
-        else if (futureMap.activeSelf)
+        else if (FutureMap.activeSelf)
         {
-            guiRenderer.sharedMaterial = future;
+            _guiRenderer.sharedMaterial = Future;
         }
-        else if (pastMap.activeSelf)
+        else if (PastMap.activeSelf)
         {
-            guiRenderer.sharedMaterial = past;
+            _guiRenderer.sharedMaterial = Past;
         }
         else
         {
-            guiRenderer.sharedMaterial = noDisplay;
+            _guiRenderer.sharedMaterial = NoDisplay;
         }
-            
-
     }
 }
