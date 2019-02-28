@@ -26,7 +26,7 @@ We used a mapAnchor for the rotation and for changing the material of the maps (
 The names of the sites are random numbers or street names and have no specific meaning.
 All cubes and connections are placed manually (not based on a database). <br />
 <br />
-*for more information read the comments in the scripts* 
+For more information read the comments in the scripts.
 ### Contact 
 Sina Haselmann (6haselma@informatik.uni-hamburg.de) //
 Joschka Eickhoff (5eickhof@informatik.uni-hamburg.de) //
