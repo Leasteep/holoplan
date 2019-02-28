@@ -1,30 +1,30 @@
 # Holoplan
-The goal of our project was to evaluate the usability of a prototype that serves as an interactive visualization of time-related dependencies between building sites. Those were displayed on up to three VR maps, which represented three different time levels. The visualization was developed for the city planning project iPlanB. 
+The goal of our project was to evaluate the usability of a prototype that serves as an interactive visualization of time-related dependencies between building sites. Those were displayed on up to three VR maps which represent three different time levels. The visualization was developed for the city planning project iPlanB. 
 With this first prototype we explored the possibility to facilitate planning processes by using the Oculus Rift VR headset and its interaction and visualization enhancements (e.g., hand gestures, 3rd dimension). 
-Users can move, scale and rotate the maps using hand gestures and select sites by touching them with the index finger to display information on dependent sites. 
+Users can move, scale and rotate the maps using hand gestures and select sites by touching them with their index finger to display information on dependent sites. 
   
 ## Hardware 
-We used the Oculus Rift in combination with two touch controller and two tracking sensors 
+We used the Oculus Rift in combination with two touch controllers and two tracking sensors 
 ## Software 
-We create your prototype in Unity (Version 2018.2.10f). 
-For the interactions with the controller, we worked with the OVR API to detect if special buttons are pressed. 
-In the implementation we used the convention to start public field names with kapitel letter and private fields with an underscore.
+We created your prototype in Unity (version 2018.2.10f). 
+For the interactions with the controller we worked with the OVR API to detect if buttons on the controllers are pressed. 
+In the implementation we used the convention to start public class variable names with capital letter and private class variables with an underscore.
 ## Structure 
-We used the OVRPlayerController, witch is a prefab out of the oculus integration asset. 
-This prefab includes a camera and the handavatars. 
-We attached following scripts to components of the prefab
+We used the OVRPlayerController, which is a prefab of the Oculus integration asset. 
+This prefab includes a camera and the hand avatars. 
+We attached the following scripts to components of the prefab
 ```
-OVRCameraRig – Activate Sites, VR Manipulation, Change GUI
-LeftHandAnchor – VR Manipulative (with LeftCube – Detector) 
-RightHandAnchor – VR Manipulative (with RightCube - Detector)
-CenterEyeAnchor – GUI Swap
+OVRCameraRig – ActivateSites, VRManipulation, ChangeGUI
+LeftHandAnchor – VRManipulative (with LeftCube Detector) 
+RightHandAnchor – VRManipulative (with RightCube Detector)
+CenterEyeAnchor – GUISwap
 ```
-All sites has an instance of the site script, but just the sites on the middle map has connection as children and the tag "site" whitch enable the manipulation <br />
-We add the left and right cubes to detect collisions with the sites.
-We used an mapAnchor for the rotation and to change the material of the maps (ScaleChangesMap script). The parentMap allows use to manipulate all maps synchronously <br />
-Names of the sites are random nummerated or named like the street
-All cubes and connections are placed free hand (not based on a databank) <br />
-For our studie we used a testside without connections (while deactivate all other sites on the middle map) to give the participant the option du explore the interactions without to much input <br /><br />
+All sites have an instance of the site script, but only the sites on the middle map have connections as child components and the tag "site" which enable activation. <br />
+We added the cubes to the left and right hand anchors to detect collisions with the sites.
+We used a mapAnchor for the rotation and for changing the material of the maps (ScaleChangesMap script). The parentMap allows synchronous manipulation of all maps. <br />
+The names of the sites are random numbers or street names and have no specific meaning.
+All cubes and connections are placed manually (not based on a database). <br />
+<br />
 *for more information read the comments in the scripts* 
 ### last Update 28.01.2019
 ### Contact 
