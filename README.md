@@ -8,7 +8,8 @@ We used the Oculus Rift in combination with two touch controllers and two tracki
 ## Software 
 We created your prototype in Unity (version 2018.2.10f). 
 For the interactions with the controller we worked with the OVR API to detect if buttons on the controllers are pressed. 
-In the implementation we used the convention to start public class variable names with capital letter and private class variables with an underscore.
+In the implementation we used the convention to start public class variable names with capital letter and private class variables with an underscore.<br />
+Use the Unity project to further develop the software or open the build version in the top folder to execute the application.
 ## Structure 
 We used the OVRPlayerController, which is a prefab of the Oculus integration asset. 
 This prefab includes a camera and the hand avatars. 
@@ -26,8 +27,8 @@ The names of the sites are random numbers or street names and have no specific m
 All cubes and connections are placed manually (not based on a database). <br />
 <br />
 *for more information read the comments in the scripts* 
-### last Update 28.01.2019
 ### Contact 
 Sina Haselmann (6haselma@informatik.uni-hamburg.de) //
 Joschka Eickhoff (5eickhof@informatik.uni-hamburg.de) //
 Lea Steep (6steep@informatik.uni-hamburg.de) 
+#### last Update 28.01.2019
